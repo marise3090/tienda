@@ -1,11 +1,6 @@
 
 package com.tienda.tienda.repository;
 
-/**
- *
- * @author allam
- */
-
 import com.tienda.tienda.domain.Categoria;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
