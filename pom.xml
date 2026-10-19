@@ -29,6 +29,7 @@
     <properties>
         <java.version>21</java.version>
         <lombok.version>1.18.48</lombok.version>
+        <maven.compiler.release>17</maven.compiler.release>
     </properties>
     
     <dependencies>
@@ -152,6 +153,11 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-Xlint</arg>
+                    </compilerArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
