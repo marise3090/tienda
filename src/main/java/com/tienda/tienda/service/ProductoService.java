@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import java.math.BigDecimal;
 
 @Slf4j
 @Service
@@ -64,5 +65,24 @@ public class ProductoService {
             // Lanza una nueva excepción para encapsular el problema de integridad de datos
             throw new IllegalStateException("No se puede eliminar la producto. Tiene datos asociados.", e);
         }
+        
+        
+        
     }
+     @Transactional(readOnly = true)
+    public List<Producto> consultaDerivada(BigDecimal precioInf, BigDecimal precioSup) {
+        return productoRepository.findByPrecioBetweenOrderByPrecioAsc(precioInf, precioSup);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> consultaJPQL(BigDecimal precioInf, BigDecimal precioSup) {
+        return productoRepository.consultaJPQL(precioInf, precioSup);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> consultaSQL(BigDecimal precioInf, BigDecimal precioSup) {
+        return productoRepository.consultaSQL(precioInf, precioSup);
+    }
+
 }
+
