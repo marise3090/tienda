@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
+import org.springframework.data.domain.PageRequest;
 
 @Slf4j
 @Service
@@ -83,6 +84,15 @@ public class ProductoService {
     public List<Producto> consultaSQL(BigDecimal precioInf, BigDecimal precioSup) {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
+
+    
+    // Practica #2: Productos mas caros de la tienda
+    @Transactional(readOnly = true)
+    public List<Producto> consultaPractica2(int cantidad) {
+        return productoRepository.findAllByOrderByPrecioDesc(
+                PageRequest.of(0, cantidad));
+    }
+
 
 }
 

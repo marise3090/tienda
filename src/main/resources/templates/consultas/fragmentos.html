@@ -67,7 +67,9 @@
             <div th:replace="~{consultas/fragmentos :: formConsulta('primary',#{consultas.derivadas},'/consultas/consultaDerivada')}"/>
             <div th:replace="~{consultas/fragmentos :: formConsulta('warning',#{consultas.jpql},'/consultas/consultaJPQL')}"/>
             <div th:replace="~{consultas/fragmentos :: formConsulta('success',#{consultas.sql},'/consultas/consultaSQL')}"/>
-            <div class='card'><p>Acá va su Práctica #2</p></div>
+            
+<div th:replace="~{consultas/fragmentos :: formPractica2}"></div>
+
         </section>
 
         <div th:fragment='formConsulta(colorForm, textoForm, urlForm)'>
@@ -96,6 +98,48 @@
                 </div>
             </form>
         </div>
+        
+        
+        
+        <!-- Practica #2: Productos mas caros de la tienda -->
+        <div th:fragment="formPractica2">
+            <form method="post" th:action="@{/consultas/consultaPractica2}"
+                  class="was-validated">
+                <div class="card p-2">
+                    <div class="card-header text-center text-white bg-info">
+                        <h5>Productos más caros</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label>¿Cuántos productos desea consultar?</label>
+                            <input type="number"
+                                   name="cantidad"
+                                   th:value="${cantidad != null ? cantidad : 5}"
+                                   class="form-control"
+                                   min="1"
+                                   max="20"
+                                   step="1"
+                                   required/>
+                        </div>
+
+                        <p class="text-muted">
+                            Consulte los productos con los precios
+                            más altos de nuestra tienda.
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info text-white">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Consultar productos
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
     </body>
 </html>
 

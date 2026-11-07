@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Pageable;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
@@ -21,5 +22,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     @Query(nativeQuery = true,
             value = "SELECT * FROM producto p WHERE p.precio BETWEEN :precioInf AND :precioSup ORDER BY p.precio ASC")
     public List<Producto> consultaSQL(BigDecimal precioInf, BigDecimal precioSup);
+
+  
+    // Practica #2: Productos mas caros de la tienda
+    public List<Producto> findAllByOrderByPrecioDesc(Pageable pageable);
+
 }
 
